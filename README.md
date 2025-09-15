@@ -65,7 +65,7 @@ References: [1] Olszewski et al., “Regression models predicting lead times and
 
 
 
-<p><h1></h1>8. Discussion: 8.1 Why the approach works</h1>
+<p><h1>8. Discussion: 8.1 Why the approach works</h1>
 
 Figure 1: 
 

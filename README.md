@@ -7,7 +7,7 @@ Keywords
 hybrid ensemble; item classification; Quantity Forecasting in Construction Supply Chains; Random Forest; Gradient Boosting; 1D-CNN; feature engineering; sample weighting; class sparsity; composite evaluation metric
 </p>
 
-<p>2.5 Summary: Gap Filled by This Work</p>
+<h1><p>2.5 Summary: Gap Filled by This Work</p></h1>
 
 <p>Existing supply-chain forecasting studies generally treat item identification and quantity prediction as separate problems. For instance, Olszewski et al. [1] apply distinct models to classify order completion and to predict lead times, while Shakir and Modupe [2] evaluate multiple robust regression models (Ridge, LASSO, XGBoost, etc.) for demand forecasting without integrating the two tasks. By contrast, our work introduces a hybrid dual-branch ensemble that jointly handles item classification (MasterItemNo) and quantity regression (QtyShipped). One branch of the model (e.g., a Random Forest) predicts the item class, while the other branch (e.g., a Gradient Boosting regressor) predicts shipped quantities; optional 1D-CNN layers can augment feature extraction in either branch. Training these branches together enables the model to capture interactions between item type and quantity in a unified framework, a capability absent in single-task pipelines. Ensemble techniques like Random Forests and gradient boosting are well established in demand forecasting for their predictive power [3], but their use in a coordinated classification–regression pipeline is novel in the procurement context. Our approach builds conceptually on hybrid pipelines used in other domains [4] but, to our knowledge, is the first to apply such a design to simultaneous item-quantity forecasting in supply chains.
   

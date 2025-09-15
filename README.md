@@ -65,13 +65,22 @@ References: [1] Olszewski et al., “Regression models predicting lead times and
 
 
 
-<p>8. Discussion
-8.1 Why the approach works
-Figure 1: Correlation matrix of numeric features from the project dataset. Our exploratory data analysis revealed strong correlations among features (e.g. invoice total, extended price, area) which guided feature engineering. We generated domain-informed features (log-transformed prices, price per sqft, project duration in days, etc.) to linearize relationships and reduce skew, ensuring features are on comparable scales. As one source notes, feature engineering “transform[s] raw features to improve model performance and accuracy” and “ensure[s] that features with different ranges or units are transformed into a comparable scale so that models can learn effectively”[1]. These transformations stabilized the regression by making the target easier to predict and by preventing any single feature from dominating. Simultaneously, we detected outliers in the shipped-quantity target (using an IQR-based test) and down-weighted extreme values during training (outliers were given weight 0.1 while normal points remained at 1.0[2]). In practice, this sample weighting (a form of weighted least squares) prevents a few erratic orders from distorting the fitted regression line, thus improving calibration and robustness. Together, thoughtful feature engineering and outlier weighting yield a more stable model: features encode meaningful structure, and the model is not “pulled” by large errors. This explains why our pipeline achieves good calibration and error rates in validation and test.
-8.2 Operational implications
+<p><h1></h1>8. Discussion: 8.1 Why the approach works<h1>
+
+Figure 1: 
+
+Correlation matrix of numeric features from the project dataset. Our exploratory data analysis revealed strong correlations among features (e.g. invoice total, extended price, area) which guided feature engineering. We generated domain-informed features (log-transformed prices, price per sqft, project duration in days, etc.) to linearize relationships and reduce skew, ensuring features are on comparable scales. As one source notes, feature engineering “transform[s] raw features to improve model performance and accuracy” and “ensure[s] that features with different ranges or units are transformed into a comparable scale so that models can learn effectively”[1]. These transformations stabilized the regression by making the target easier to predict and by preventing any single feature from dominating. Simultaneously, we detected outliers in the shipped-quantity target (using an IQR-based test) and down-weighted extreme values during training (outliers were given weight 0.1 while normal points remained at 1.0[2]). 
+
+In practice, this sample weighting (a form of weighted least squares) prevents a few erratic orders from distorting the fitted regression line, thus improving calibration and robustness. Together, thoughtful feature engineering and outlier weighting yield a more stable model: features encode meaningful structure, and the model is not “pulled” by large errors. This explains why our pipeline achieves good calibration and error rates in validation and test.
+
+<h1>8.2 Operational implications</h1>
+
 The item-and-quantity forecasts from our model can be directly plugged into procurement planning. For example, predicted item+quantity pairs give purchasing teams a prioritized shopping list for upcoming projects, enabling bulk ordering or vendor negotiations. Accurate demand forecasts let procurement maintain optimal inventory levels – avoiding both stockouts and waste. In fact, predictive analytics are known to “maintain optimal inventory levels, reducing waste and avoiding stockouts” by aligning orders with expected usage[3]. In practice, procurement managers could integrate our forecasts into their ERP systems to trigger purchase orders and budget allocations.
 At the same time, several risks must be managed. Model predictions are not perfect and come with uncertainty: overestimating quantity could lead to excess inventory and capital tie-up, while underestimating could cause project delays and expedited-costs. Forecasts must therefore be used in concert with human expertise and buffer stocks. Moreover, procurement teams should continually monitor actual usage versus predictions, updating plans if model errors become systematic. In short, item+quantity predictions provide a data-driven starting point for procurement, but prudent teams will always include safety margins and validate model outputs against real-world signals.
-8.3 Limitations
+
+
+<h1>8.3 Limitations </h1>
+
 While the results are encouraging, the approach has several limitations to acknowledge:
 
 - Ultra-rare classes: Some item categories appear only a handful of times (or even once) in the training data. The model cannot reliably learn from these tiny samples, so we must filter or down-weight them. This means forecast accuracy is poor for truly one-off parts, and procurement teams should treat those predictions with caution.
@@ -88,12 +97,15 @@ Figure 5: Actual vs Predicted Quantity (validation set), colored by error magnit
 - Advanced uncertainty quantification: 
 Move beyond point predictions to provide error bounds. Techniques like quantile regression or conformal prediction could give prediction intervals for quantities, so procurement teams see a range (e.g. 10–20 units) rather than a single number. This would explicitly communicate forecast uncertainty and help manage risk in planning.
 
-9. Conclusion
+<h1>9. Conclusion</h1>
+    
 We addressed the challenge of forecasting item and quantity requirements for construction procurement. Our solution combines an item-classification model with a quantity-regression model, augmented by targeted feature engineering and sample-weighting. 
 This approach yielded significant improvements in predictive accuracy and calibration: classification accuracy on common items was high, and quantity forecasts showed low mean absolute error on held-out data. In practical terms, these gains translate into more reliable material planning. Procurement teams can use the predicted item–quantity pairs as a data-informed shopping list, aligning purchases with actual needs and reducing costly overstock or shortages. 
 Overall, our model-driven process offers a scalable path to efficient procurement: it automates routine forecasts while still highlighting limitations. In summary, the proposed approach tackles the initial problem by delivering more accurate and stable demand predictions, with clear quantitative benefits (e.g. higher composite scores and lower MAE) and pragmatic value in procurement operations. Future deployment and iterative refinement will further embed this predictive capability into procurement workflows, yielding ongoing cost and efficiency improvements.
 
-Sources: We built on standard ML principles (feature scaling and engineering[1], weighted regression[2]) and industry best practices for predictive procurement[3]. Our discussion of covariate shift and model limits is informed by the well-known phenomenon that real-world data can change over time[4]. The above analysis integrates these insights with our empirical results (Figs. 1–5) to explain the outcomes and chart future steps.
+<h1>Sources: </h1>
+
+We built on standard ML principles (feature scaling and engineering[1], weighted regression[2]) and industry best practices for predictive procurement[3]. Our discussion of covariate shift and model limits is informed by the well-known phenomenon that real-world data can change over time[4]. The above analysis integrates these insights with our empirical results (Figs. 1–5) to explain the outcomes and chart future steps.
 [1] Feature Engineering: Scaling, Normalization and Standardization - GeeksforGeeks
 https://www.geeksforgeeks.org/machine-learning/Feature-Engineering-Scaling-Normalization-and-Standardization/
 [2] CTAI - CTD Hackathon Algorithm_ Efficient material forecasting 
@@ -102,7 +114,7 @@ https://www.controlhub.com/blog/procurement-predictive-analytics
 [4] Data Distribution Shifts and Monitoring
 https://huyenchip.com/2022/02/07/data-distribution-shifts-and-monitoring.html
 
-Acknowledgements
+<h1>Acknowledgements</h1>
 We acknowledge CTAI Foundation for the dataset and challenge [9], and the contributors at Handsonlabs Software Academy.
 </p>
 

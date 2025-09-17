@@ -89,7 +89,7 @@ While the results are encouraging, the approach has several limitations to ackno
 
 - Seasonal and external factors: The current model does not explicitly capture time effects or external drivers. For example, seasonal demand cycles, sudden material shortages, or policy changes could cause quantities to deviate from predictions. Likewise, macroeconomic conditions or supply chain disruptions are not part of the input data. These unmodeled factors can introduce errors in our forecasts and should be managed (e.g. through rolling reviews of the model or business logic adjustments).
 
-<h1>8.4 Future work></h1>
+<h1>8.4 Future work</h1>
 Figure 5: Actual vs Predicted Quantity (validation set), colored by error magnitude. The residuals in this plot highlight where the model errs (warmer colors). Several enhancements could improve performance and reliability:
 - Temporal/Seasonal features: Incorporate time-series aspects such as month or quarter indicators, lagged demand, or project timeline features. This would help the model learn seasonal patterns or project phases that affect usage.
 - Online/Continual learning: Deploy the model in a pipeline that regularly retrains on new data. As new projects complete and actual usage becomes available, the model could update itself, adapting to drift and maintaining calibration over time.

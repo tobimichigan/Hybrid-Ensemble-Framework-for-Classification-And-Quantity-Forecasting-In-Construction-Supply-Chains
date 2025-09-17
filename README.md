@@ -107,13 +107,16 @@ Overall, our model-driven process offers a scalable path to efficient procuremen
 <h1>Sources: </h1>
 
 We built on standard ML principles (feature scaling and engineering[1], weighted regression[2]) and industry best practices for predictive procurement[3]. Our discussion of covariate shift and model limits is informed by the well-known phenomenon that real-world data can change over time[4]. The above analysis integrates these insights with our empirical results (Figs. 1–5) to explain the outcomes and chart future steps.
-[1] Feature Engineering: Scaling, Normalization and Standardization - GeeksforGeeks
+
+<h1>Subset of References  (see article link for full Citations</h1>
+
+<p>[1] Feature Engineering: Scaling, Normalization and Standardization - GeeksforGeeks
 https://www.geeksforgeeks.org/machine-learning/Feature-Engineering-Scaling-Normalization-and-Standardization/
 [2] CTAI - CTD Hackathon Algorithm_ Efficient material forecasting 
 [3] How Predictive Analytics Transforms Procurement Strategies
 https://www.controlhub.com/blog/procurement-predictive-analytics
 [4] Data Distribution Shifts and Monitoring
-https://huyenchip.com/2022/02/07/data-distribution-shifts-and-monitoring.html
+https://huyenchip.com/2022/02/07/data-distribution-shifts-and-monitoring.html</p>
 
 <h1>Acknowledgements</h1>
 We acknowledge CTAI Foundation for the dataset and challenge [9], and the contributors at Handsonlabs Software Academy.
